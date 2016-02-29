@@ -101,6 +101,11 @@ const segmentHandler = SegmentHandler({
         return false;
       }
 
+      // Do not pass "empty" identifies.
+      if (!traits.email || (traits.email.indexOf('@') === -1) ) {
+        return false;
+      }
+
       const user = _.reduce((traits || {}), (u, v, k) => {
         if (v == null) return u;
         if (_.include(TOP_LEVEL_FIELDS, k)) {
